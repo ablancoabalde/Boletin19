@@ -1,10 +1,13 @@
 
 package com.alberto.libreria;
 // Cada libro de levar : título , autor , ISBN (String ) , prezo , e numero de unidades.
-public class Libro {
+public class Libro implements Comparable<Libro> {
     private String titulo,autor,ISBN;
     private float prezo;
     private int nUnidades;
+
+    public Libro() {
+    }
 
     public Libro(String titulo, String autor, String ISBN, float prezo, int nUnidades) {
         this.titulo=titulo;
@@ -56,10 +59,29 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro{"+"titulo="+titulo+", autor="+autor+", ISBN="+ISBN+", prezo="+prezo+", nUnidades="+nUnidades+'}';
+        return "Titulo: "+titulo+", Autor: "+autor+", ISBN: "+ISBN+", prezo: "+prezo+", Unidades: "+nUnidades;
     }
+
+    @Override
+    public int compareTo(Libro o) {
+        
+        int resultado=0;        
+        
+        if(this.titulo.compareToIgnoreCase(o.titulo)>0) {
+            resultado = 1;   
+        }
+        else if(this.titulo.compareToIgnoreCase(o.titulo)==0) { 
+            resultado = 0;  
+        }
+        else {
+             resultado = -1;   
+        }
+        return resultado;
+    }
+        
+          }
     
     
     
     
-}
+
