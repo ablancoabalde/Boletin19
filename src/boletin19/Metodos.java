@@ -1,6 +1,7 @@
 package boletin19;
 
 import com.alberto.libreria.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -16,13 +17,13 @@ No caso contrario lanza una excepción.
  */
 public class Metodos {
 
-    Libreria obxLi=new Libreria();
-    ArrayList<Libro> lLibros=new ArrayList<Libro>();
+    Libreria obxLi = new Libreria();
+    ArrayList<Libro> lLibros = new ArrayList<Libro>();
 
     public void cargar() {
         obxLi.cargarLibros();
 
-        lLibros=obxLi.exporLibreria();
+        lLibros = obxLi.exporLibreria();
     }
 
     public void engadirLibro(Libro l) {
@@ -31,47 +32,56 @@ public class Metodos {
 
     public void venderLibro(String l) {
         int vendido;
-        boolean encontrado=false;
-        for (int i=0; i<lLibros.size(); i++) {
+        boolean encontrado = false;
+        for (int i = 0; i < lLibros.size(); i++) {
             if (lLibros.get(i).getISBN().equalsIgnoreCase(l)) {
-                vendido=lLibros.get(i).getnUnidades();
-                lLibros.get(i).setnUnidades(vendido-1);
-                encontrado=true;
-            } 
+                vendido = lLibros.get(i).getnUnidades();
+                lLibros.get(i).setnUnidades(vendido - 1);
+                encontrado = true;
+            }
         }
-        if(encontrado==false){
+        if (encontrado == false) {
             System.out.println("Libro no encontrado");
         }
 
     }
 
-    public void amosar() {
+    public void amosar(){
 
         Collections.sort(lLibros);
         for (Libro elemento : lLibros) {
             System.out.println(elemento.toString());
         }
+        System.out.println("\n\n\n");
     }
 
     public void darBaixa() {
 
-        for (Libro elemento : lLibros) {
-            if (elemento.getnUnidades()==0) {
-                lLibros.remove(elemento);
+        Iterator<Libro> it = lLibros.iterator();
+        while (it.hasNext()) {
+            if (it.next().getnUnidades() == 0) {
+                lLibros.remove(it.next());
             }
         }
 
     }
 
-    public String consultaLibro(int k) {
+    public String consultaLibro(String k) {
 
         try {
-            return lLibros.get(k).toString();
+            for(Libro elemento: lLibros){
+                if(elemento.getISBN().equalsIgnoreCase(k)){
+                    return elemento.toString();
+                }
+            }
+            return "Referencia no encontrada";
         } catch (IndexOutOfBoundsException exception) {
             return "Error no encontrada la posición";
 
         }
-        
+
     }
+
+
 
 }

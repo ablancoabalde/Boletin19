@@ -47,7 +47,7 @@ public class Boletin19 {
                         obx.darBaixa();
                         break;
                     case 5:
-                        obx.consultaLibro(Integer.parseInt(JOptionPane.showInputDialog("Posición de libro")));
+                        System.out.println(obx.consultaLibro(JOptionPane.showInputDialog("Referencia del libro")));
                           break;
                     case 6:
 
