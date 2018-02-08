@@ -17,13 +17,13 @@ No caso contrario lanza una excepción.
  */
 public class Metodos {
 
-    Libreria obxLi = new Libreria();
-    ArrayList<Libro> lLibros = new ArrayList<Libro>();
+    Libreria obxLi=new Libreria();
+    ArrayList<Libro> lLibros=new ArrayList<Libro>();
 
     public void cargar() {
         obxLi.cargarLibros();
 
-        lLibros = obxLi.exporLibreria();
+        lLibros=obxLi.exporLibreria();
     }
 
     public void engadirLibro(Libro l) {
@@ -32,21 +32,21 @@ public class Metodos {
 
     public void venderLibro(String l) {
         int vendido;
-        boolean encontrado = false;
-        for (int i = 0; i < lLibros.size(); i++) {
+        boolean encontrado=false;
+        for (int i=0; i<lLibros.size(); i++) {
             if (lLibros.get(i).getISBN().equalsIgnoreCase(l)) {
-                vendido = lLibros.get(i).getnUnidades();
-                lLibros.get(i).setnUnidades(vendido - 1);
-                encontrado = true;
+                vendido=lLibros.get(i).getnUnidades();
+                lLibros.get(i).setnUnidades(vendido-1);
+                encontrado=true;
             }
         }
-        if (encontrado == false) {
+        if (encontrado==false) {
             System.out.println("Libro no encontrado");
         }
 
     }
 
-    public void amosar(){
+    public void amosar() {
 
         Collections.sort(lLibros);
         for (Libro elemento : lLibros) {
@@ -57,10 +57,11 @@ public class Metodos {
 
     public void darBaixa() {
 
-        Iterator<Libro> it = lLibros.iterator();
+        Iterator<Libro> it=lLibros.iterator();
         while (it.hasNext()) {
-            if (it.next().getnUnidades() == 0) {
-                lLibros.remove(it.next());
+
+            if (it.next().getnUnidades()==0) {
+                it.remove();
             }
         }
 
@@ -69,8 +70,8 @@ public class Metodos {
     public String consultaLibro(String k) {
 
         try {
-            for(Libro elemento: lLibros){
-                if(elemento.getISBN().equalsIgnoreCase(k)){
+            for (Libro elemento : lLibros) {
+                if (elemento.getISBN().equalsIgnoreCase(k)) {
                     return elemento.toString();
                 }
             }
@@ -81,7 +82,5 @@ public class Metodos {
         }
 
     }
-
-
 
 }

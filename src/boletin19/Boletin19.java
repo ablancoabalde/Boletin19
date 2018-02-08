@@ -18,7 +18,7 @@ public class Boletin19 {
             Try para que no deje de funcionar cuando pulse cancelar en el JOptionPane y cierre la app
              */
             try {
-                opcion=Integer.parseInt(JOptionPane.showInputDialog("Opciones:\n "
+                opcion=Integer.parseInt(JOptionPane.showInputDialog(null,"Opciones:\n "
                         +"1) Engadir libros\n "
                         +"2) Vender libros\n"
                         +"3) Amosar os libros\n"
